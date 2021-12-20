@@ -8,7 +8,7 @@ Use the correct version of Archiso to build the iso.
 
 Download the content of the github with (use the terminal)
 
-`git clone https://github.com/arch-linux-calamares-installer/alci-iso-dev`
+`git clone https://github.com/arch-linux-calamares-installer/alci-iso-zen`
 
 # Pacman.conf in archiso folder
 
@@ -34,15 +34,13 @@ It will not be used to build the iso.
 ## ArcoLinux keys and mirror
 
 Add the ArcoLinux keys and Arcolinux mirrors to the packages.x86_64.
-Add the ArcoLinux line in 
-`/archiso/airootfs/etc/systemd/system/pacman-init.service`
+The pacman-init service  at etc/systemd/system/pacman-init.service will add any keys present.
 
 
 ## Chaotic keys and mirror
 
 Add the Chaotic keys and Chaotic mirrors to the packages.x86_64.
-Add the Chaotic line in 
-`/archiso/airootfs/etc/systemd/system/pacman-init.service`
+The pacman-init service  at etc/systemd/system/pacman-init.service will add any keys present.
 
 
 # Archiso/packages.x86_64
@@ -99,7 +97,7 @@ Use script 40 to use your current pacman cache - it will only download what is n
 
 You will find the iso in this folder:
 
- ~/Alci-Dev-Out
+ ~/Alci-Iso-Zen-Out
 
 Burn it with etcher or other tools and use it.
 
@@ -189,7 +187,7 @@ https://imgur.com/a/EvCN4pm
 
 # Tip
 
-Internet is NOT required for ALCI. Calamares is only using the internet to check where you live to put the red dot correctly on the world map (geoip). Calamares will**not download anything**. 
+Internet is NOT required for ALCI. Calamares is only using the internet to check where you live to put the red dot correctly on the world map (geoip). Calamares will **not download anything**. 
 
 The list you created in the packages.x86_64 file will be installed on the iso and on your future system.
 
