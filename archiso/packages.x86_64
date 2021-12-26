@@ -220,8 +220,8 @@ base-devel
 ##### want to have a desktop
 
 #test
-xfce4
-xfce4-goodies
+#xfce4
+#xfce4-goodies
 neofetch
 
 
@@ -264,3 +264,8 @@ neofetch
 
 linux-zen
 linux-zen-headers
+
+cinnamon
+nemo-fileroller
+cinnamon-translations
+gnome-terminal
