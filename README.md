@@ -1,4 +1,4 @@
-# ALCI DEVELOPMENT/DESKTOP
+# ALCI ZEN
 
 # Arch Linux Calamares Installer or ALCI
 
