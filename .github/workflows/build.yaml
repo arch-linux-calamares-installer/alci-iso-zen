@@ -19,7 +19,7 @@ jobs:
       run: docker run --privileged --name aurum-container -v ${{ github.workspace }}/output:/output aurum-image:latest
 
     - name: Upload ISO artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: iso-artifact
         path: output/
