@@ -100,6 +100,9 @@ echo
 	fi
 
 	echo
+	echo "Saving current archiso version to archiso.md"
+	sed -i "s/\(^archiso-version=\).*/\1$archisoVersion/" /archiso.md
+	echo
 	echo "Making mkarchiso verbose"
 	sed -i 's/quiet="y"/quiet="n"/g' /usr/bin/mkarchiso
 
@@ -119,7 +122,7 @@ echo
 	echo "Copying the Archiso folder to build work"
 	echo
 	mkdir $buildFolder
-	cp -r /root/archiso $buildFolder/archiso
+	cp -r /archiso $buildFolder/archiso
 
 # echo
 # echo "################################################################## "
