@@ -16,7 +16,7 @@ jobs:
       run: docker build -t my-image:latest .
 
     - name: Run Docker container with privileged mode
-        run: docker run --privileged --name aurum-container aurum-image:latest
+      run: docker run --privileged --name aurum-container aurum-image:latest
 
     - name: Copy output from Docker container
       run: docker cp my-container:/path/to/output ./output
