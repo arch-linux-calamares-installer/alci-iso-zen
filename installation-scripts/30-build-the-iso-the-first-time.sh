@@ -40,9 +40,9 @@ echo
 
 	# setting of the general parameters
 	archisoRequiredVersion="archiso 82-1"
-	buildFolder=$HOME"/alci-build"
-	outFolder=$HOME"/Alci-Iso-Zen-Out"
-	archisoVersion=$(sudo pacman -Q archiso)
+	buildFolder="/root/alci-build"
+	outFolder="/output"
+	archisoVersion=$(pacman -Q archiso)
 
 	echo "################################################################## "
 	#echo "Building the desktop                   : "$desktop
@@ -64,7 +64,7 @@ echo
 	tput setaf 1
 	echo "###################################################################################################"
 	echo "You need to install the correct version of Archiso"
-	echo "Use 'sudo downgrade archiso' to do that"
+	echo "Use 'downgrade archiso' to do that"
 	echo "or update your system"
 	echo "If a new archiso package comes in and you want to test if you can still build"
 	echo "the iso then change the version in line 37."
@@ -94,46 +94,17 @@ echo
 
 	else
 
-		#checking which helper is installed
-		if pacman -Qi yay &> /dev/null; then
-
-			echo "################################################################"
-			echo "######### Installing with yay"
-			echo "################################################################"
-			yay -S --noconfirm $package
-
-		elif pacman -Qi trizen &> /dev/null; then
-
-			echo "################################################################"
-			echo "######### Installing with trizen"
-			echo "################################################################"
-			trizen -S --noconfirm --needed --noedit $package
-
-		fi
-
-		# Just checking if installation was successful
-		if pacman -Qi $package &> /dev/null; then
-
-			echo "################################################################"
-			echo "#########  "$package" has been installed"
-			echo "################################################################"
-
-		else
-
-			echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-			echo "!!!!!!!!!  "$package" has NOT been installed"
-			echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-			exit 1
-		fi
+		echo "Archiso is not installed. Exiting..."
+		exit 1
 
 	fi
 
 	echo
 	echo "Saving current archiso version to archiso.md"
-	sudo sed -i "s/\(^archiso-version=\).*/\1$archisoVersion/" ../archiso.md
+	sed -i "s/\(^archiso-version=\).*/\1$archisoVersion/" /root/archiso.md
 	echo
 	echo "Making mkarchiso verbose"
-	sudo sed -i 's/quiet="y"/quiet="n"/g' /usr/bin/mkarchiso
+	sed -i 's/quiet="y"/quiet="n"/g' /usr/bin/mkarchiso
 
 echo
 echo "################################################################## "
@@ -146,12 +117,12 @@ echo "################################################################## "
 echo
 
 	echo "Deleting the build folder if one exists - takes some time"
-	[ -d $buildFolder ] && sudo rm -rf $buildFolder
+	[ -d $buildFolder ] && rm -rf $buildFolder
 	echo
 	echo "Copying the Archiso folder to build work"
 	echo
 	mkdir $buildFolder
-	cp -r ../archiso $buildFolder/archiso
+	cp -r /root/archiso $buildFolder/archiso
 
 # echo
 # echo "################################################################## "
@@ -243,7 +214,7 @@ echo "################################################################## "
 echo
 
 	echo "Cleaning the cache from /var/cache/pacman/pkg/"
-	yes | sudo pacman -Scc
+	yes | pacman -Scc
 
 echo
 echo "################################################################## "
@@ -256,7 +227,7 @@ echo
 
 	[ -d $outFolder ] || mkdir $outFolder
 	cd $buildFolder/archiso/
-	sudo mkarchiso -v -w $buildFolder -o $outFolder $buildFolder/archiso/
+	mkarchiso -v -w $buildFolder -o $outFolder $buildFolder/archiso/
 
 
 
@@ -301,7 +272,7 @@ echo "################################################################## "
 echo
 
 	#echo "Deleting the build folder if one exists - takes some time"
-	#[ -d $buildFolder ] && sudo rm -rf $buildFolder
+	#[ -d $buildFolder ] && rm -rf $buildFolder
 
 echo
 echo "##################################################################"

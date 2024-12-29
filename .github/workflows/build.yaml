@@ -1,0 +1,28 @@
+name: Build and Upload Artifact
+
+on: 
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Build Docker image
+      run: docker build -t my-image:latest .
+
+    - name: Run Docker container with privileged mode
+        run: docker run --privileged --name aurum-container aurum-image:latest
+
+    - name: Copy output from Docker container
+      run: docker cp my-container:/path/to/output ./output
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: output
+        path: ./output

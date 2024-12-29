@@ -1,16 +1,34 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2034
 
-iso_name="archlinux"
-iso_label="ARCH_$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y%m)"
-iso_publisher="Arch Linux <https://archlinux.org>"
-iso_application="Arch Linux Live/Rescue DVD"
-iso_version="$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y.%m.%d)"
-install_dir="arch"
+# This script defines the configuration for building an Arch Linux ISO.
+#
+# Variables:
+# iso_name: The name of the ISO.
+# iso_label: The label of the ISO, which includes the current date.
+# iso_publisher: The publisher information for the ISO.
+# iso_application: The application description for the ISO.
+# iso_version: The version of the ISO, which includes the current date.
+# install_dir: The directory where the ISO will be installed.
+# buildmodes: The modes in which the ISO can be built.
+# bootmodes: The boot modes supported by the ISO.
+# arch: The architecture of the ISO.
+# pacman_conf: The path to the pacman configuration file.
+# airootfs_image_type: The type of image used for the root filesystem.
+# airootfs_image_tool_options: The options for the tool used to create the root filesystem image.
+# bootstrap_tarball_compression: The compression options for the bootstrap tarball.
+# file_permissions: An associative array defining the file permissions for specific files and directories.
+iso_name="aurumOS"
+iso_label="AURUM_$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y%m)"
+iso_publisher="aurumOS <https://aurumos.org>"
+iso_state="stable"
+iso_application="aurumOS Live/Rescue DVD"
+iso_version="$iso_state-$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y.%m.%d)-CODENAME"
+install_dir="aurum"
 buildmodes=('iso')
 bootmodes=('bios.syslinux.mbr' 'bios.syslinux.eltorito'
-           'uefi-ia32.systemd-boot.esp' 'uefi-x64.systemd-boot.esp'
-           'uefi-ia32.systemd-boot.eltorito' 'uefi-x64.systemd-boot.eltorito')
+  'uefi-ia32.systemd-boot.esp' 'uefi-x64.systemd-boot.esp'
+  'uefi-ia32.systemd-boot.eltorito' 'uefi-x64.systemd-boot.eltorito')
 arch="x86_64"
 pacman_conf="pacman.conf"
 airootfs_image_type="squashfs"
