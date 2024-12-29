@@ -40,7 +40,7 @@ echo
 
 	# setting of the general parameters
 	archisoRequiredVersion="archiso 82-1"
-	buildFolder="/root/alci-build"
+	buildFolder="/build"
 	outFolder="/output"
 	archisoVersion=$(pacman -Q archiso)
 
