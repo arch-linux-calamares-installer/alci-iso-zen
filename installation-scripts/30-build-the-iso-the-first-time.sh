@@ -100,9 +100,6 @@ echo
 	fi
 
 	echo
-	echo "Saving current archiso version to archiso.md"
-	sed -i "s/\(^archiso-version=\).*/\1$archisoVersion/" /root/archiso.md
-	echo
 	echo "Making mkarchiso verbose"
 	sed -i 's/quiet="y"/quiet="n"/g' /usr/bin/mkarchiso
 
