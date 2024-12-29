@@ -13,16 +13,13 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build Docker image
-      run: docker build -t my-image:latest .
+      run: docker build -t aurum-image:latest .
 
     - name: Run Docker container with privileged mode
-      run: docker run --privileged --name aurum-container aurum-image:latest
+      run: docker run --privileged --name aurum-container -v ${{ github.workspace }}/output:/output aurum-image:latest
 
-    - name: Copy output from Docker container
-      run: docker cp my-container:/path/to/output ./output
-
-    - name: Upload artifact
+    - name: Upload ISO artifact
       uses: actions/upload-artifact@v2
       with:
-        name: output
-        path: ./output
+        name: iso-artifact
+        path: output/
