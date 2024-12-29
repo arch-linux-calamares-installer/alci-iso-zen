@@ -20,10 +20,11 @@
 # file_permissions: An associative array defining the file permissions for specific files and directories.
 iso_name="aurumOS"
 iso_label="AURUM_$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y%m)"
-iso_publisher="aurumOS <https://aurumos.org>"
-iso_state="stable"
+iso_publisher="Ecliptica Ltd. <https://ecliptica.pp.ua>"
+iso_state="ALPHA"
+iso_codename="AURORA"
 iso_application="aurumOS Live/Rescue DVD"
-iso_version="$iso_state-$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y.%m.%d)-CODENAME"
+iso_version="$iso_state-$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y.%m.%d)-$iso_codename"
 install_dir="aurum"
 buildmodes=('iso')
 bootmodes=('bios.syslinux.mbr' 'bios.syslinux.eltorito'

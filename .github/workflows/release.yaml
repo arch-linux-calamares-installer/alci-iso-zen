@@ -1,0 +1,41 @@
+name: Build and Upload Release
+
+on: 
+  workflow_dispatch:
+    inputs:
+      state:
+        description: 'State of the release'
+        required: true
+        default: 'stable'
+        options:
+          - 'stable'
+          - 'beta'
+          - 'alpha'
+      codename:
+        description: 'Codename of the release'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Build Docker image
+      run: docker build -t aurum-image:latest .
+
+    - name: Run Docker container with privileged mode
+      run: docker run --privileged --name aurum-container -v ${{ github.workspace }}/output:/output aurum-image:latest
+
+    - name: Upload ISO
+      uses: actions/upload-artifact@v3
+      with:
+        name: iso-artifact
+        path: output/
+    - uses: ncipollo/release-action@v1
+      with:
+        name: aurumOS ${{inputs.codename}}-${{inputs.state}}
+        tag: ${{inputs.codename}}-${{inputs.state}}
+        artifacts: output/*.iso
